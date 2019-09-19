@@ -122,3 +122,7 @@ class UserProfileFeedViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Setea el usuario logeado a user_profile de la tabla"""
         serializer.save(user_profile=self.request.user)
+
+    def get_queryset(self):
+        return models.ProfileFeedItem.objects.filter(user_profile=self.request.user)
+
